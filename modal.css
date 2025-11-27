@@ -1,4 +1,4 @@
-/* modal.css - versión corregida y responsiva */
+/* modal.css - versión optimizada, texto más pequeño y estable */
 
 :root{
   --black: rgba(0,0,0,0.6);
@@ -20,15 +20,14 @@ button {
   font-size: inherit;
 }
 
-/* Body: si usás este archivo global, no forcés el centrado absoluto del body.
-   Si querés mantener el centrado de la página principal, dejalo. */
+/* Body */
 body {
   font: 16px/1.5 sans-serif;
   margin: 0;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Botones que abren modal: (si los querés aquí) */
+/* Botones que abren modal */
 .open-modal {
   font-weight: bold;
   padding: 0.75rem 1.75rem;
@@ -36,16 +35,16 @@ body {
   border-radius: 5px;
 }
 
-/* MODAL */
+/* ===== MODAL ===== */
+
 .modal {
   position: fixed;
-  inset: 0; /* top:0; left:0; right:0; bottom:0; */
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
   background: var(--black);
-  /* Quitar pointer del fondo para que no parezca clickeable aparte del close */
   cursor: default;
   visibility: hidden;
   opacity: 0;
@@ -58,9 +57,8 @@ body {
   opacity: 1;
 }
 
-/* Dialog - RESPONSIVE by default */
 .modal-dialog {
-  position: relative;             /* importante: no absolute */
+  position: relative;
   max-width: 800px;
   width: 90%;
   max-height: 80vh;
@@ -68,26 +66,16 @@ body {
   background: var(--white);
   overflow: auto;
   cursor: default;
-  /* Si tenés fondo de prueba, quitalo o cámbialo */
-  /* background-color: fuchsia; */
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   transform-origin: center center;
 }
 
-/* Espaciado consistente */
 .modal-dialog > * {
   padding: 1rem;
   box-sizing: border-box;
 }
 
-/* Header y footer */
-.modal-header,
-.modal-footer {
-  height: max-content;
-  padding: 0.75rem 1rem;
-}
-
-/* Header con flex para icono + close */
+/* Header */
 .modal-header {
   display: flex;
   align-items: center;
@@ -98,31 +86,27 @@ body {
   border-top-right-radius: 8px;
 }
 
-/* Icono grande en header (ej: 🙊) */
-.modal-header h2, .modal-header h4 {
+.modal-header h2, 
+.modal-header h4 {
   margin: 0;
   font-size: 1.6rem;
   line-height: 1;
-  padding-right: 0.5rem;
 }
 
-/* Botón cerrar: más grande y accesible */
 .modal-header .close-modal {
   font-size: 1.4rem;
-  line-height: 1;
   padding: 8px;
   border-radius: 6px;
   background: transparent;
   color: white;
-  opacity: 0.95;
 }
 
-/* Hover/active para close */
 .modal-header .close-modal:hover {
   background: rgba(255,255,255,0.08);
 }
 
-/* Contenido del modal */
+/* ===== CONTENIDO ===== */
+
 .modal-content {
   color: #222;
   background: transparent;
@@ -130,19 +114,33 @@ body {
 
 .modal-content h3 {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.4;
   word-wrap: break-word;
 }
 
-/* Si tenés imágenes dentro */
 .modal-content img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Animaciones (mantener las tuyas) */
+/* Texto del modal */
+.modal-texto {
+  font-size: 1rem;          /* tamaño base más pequeño */
+  line-height: 1.45;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { display: none; }
+
+/* ===== ANIMACIONES ===== */
+
 [data-animation] .modal-dialog {
   opacity: 0;
   transition: all 0.5s var(--bounceEasing);
@@ -154,14 +152,14 @@ body {
 }
 
 [data-animation="slideInOutDown"] .modal-dialog { transform: translateY(100%); }
-[data-animation="slideInOutTop"] .modal-dialog { transform: translateY(-100%); }
+[data-animation="slideInOutTop"]  .modal-dialog { transform: translateY(-100%); }
 [data-animation="slideInOutLeft"] .modal-dialog { transform: translateX(-100%); }
-[data-animation="slideInOutRight"] .modal-dialog { transform: translateX(100%); }
-[data-animation="zoomInOut"] .modal-dialog { transform: scale(0.2); }
-[data-animation="rotateInOutDown"] .modal-dialog { transform-origin: top left; transform: rotate(-1turn); }
+[data-animation="slideInOutRight"].modal-dialog { transform: translateX(100%); }
+[data-animation="zoomInOut"]       .modal-dialog { transform: scale(0.2); }
 
-[data-animation="mixInAnimations"].is-visible .modal-dialog {
-  animation: mixInAnimations 2s 0.2s linear forwards;
+[data-animation="rotateInOutDown"] .modal-dialog {
+  transform-origin: top left;
+  transform: rotate(-1turn);
 }
 
 [data-animation="slideInOutDown"].is-visible .modal-dialog,
@@ -175,31 +173,14 @@ body {
 
 @keyframes mixInAnimations {
   0%   { transform: translateX(-100%); }
-  10%  { transform: translateX(0); }
-  20%  { transform: rotate(20deg); }
-  30%  { transform: rotate(-20deg); }
-  40%  { transform: rotate(15deg); }
-  50%  { transform: rotate(-15deg); }
-  60%  { transform: rotate(10deg); }
-  70%  { transform: rotate(-10deg); }
-  80%  { transform: rotate(5deg); }
-  90%  { transform: rotate(-5deg); }
-  100% { transform: rotate(0deg); }
+  100% { transform: translateX(0); }
 }
 
-/* Footer helper (si lo eliminaste no hace falta) */
-.page-footer {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-}
-.page-footer span { color: #e31b23; }
+/* ===== MEDIA QUERIES ===== */
 
-/* Scrollbar: ocultar en webkit pero permitir scroll por teclado/touch */
-::-webkit-scrollbar { display: none; }
-
-/* MEDIA QUERIES - pequeñas pantallas */
+/* Móviles pequeños */
 @media (max-width: 480px) {
+
   .modal-dialog {
     width: 96%;
     max-width: 420px;
@@ -207,31 +188,27 @@ body {
     border-radius: 10px;
   }
 
-  .modal-header h2, .modal-header h4 {
-    font-size: 1.4rem;
+  .modal-header h2, 
+  .modal-header h4 {
+    font-size: 1.3rem;
   }
 
   .modal-header .close-modal {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     padding: 10px;
   }
 
-  .modal-content {
-    min-width: 300px !important; /* evita que el modal sea muy estrecho */
-    max-width: 90%;
-}
+  .modal-texto {
+    font-size: 0.9rem;   /* 🔥 más chico aún para evitar saltos de línea */
+    line-height: 1.45;
+    padding: 8px;
+  }
 }
 
-/* TABLET / small desktop tweaks */
+/* Tablet */
 @media (max-width: 600px) {
-    .modal-texto {
-        font-size: 1.1rem;
-        line-height: 1.45;
-        padding: 10px;
-    }
-}
-
-  .modal-content p {
+  .modal-texto {
     font-size: 1rem;
   }
 }
+
