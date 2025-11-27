@@ -10,24 +10,40 @@
     <link rel="shortcut icon" href="logo.png">
 
     <style>
-        /* Ajuste para que los botones sí/no entren en pantalla móvil */
-        #yesBtn, #noBtn {
-            width: 80%;
-            max-width: 250px;
-            margin: 10px auto;
-            display: block;
-        }
+    /* Botones sí/no responsivos */
+    #yesBtn, #noBtn {
+        width: 80%;
+        max-width: 250px;
+        margin: 10px auto;
+        display: block;
+    }
 
-        /* Evitar que el modal se salga en celular */
-        .modal-dialog {
-            max-width: 90%;
-            width: 90%;
-        }
+    /* Permitir que modal.css maneje el tamaño desde celular */
+    .modal-dialog {
+        max-width: 600px;
+        width: 90%;
+    }
 
-        .modal-content h3 {
-            font-size: 1rem;
+    /* Tamaño de texto del modal más chico y estable */
+    .modal-texto {
+        font-size: 0.95rem;
+        line-height: 1.45;
+        text-align: center;
+        overflow-wrap: break-word;
+        word-break: normal;
+        hyphens: auto;
+    }
+
+    /* Tamaño más pequeño aún en móviles chicos */
+    @media (max-width: 480px) {
+        .modal-texto {
+            font-size: 0.85rem;
+            line-height: 1.4;
+            padding: 5px 8px;
         }
-    </style>
+    }
+</style>
+
 </head>
 
 <body>
@@ -120,6 +136,7 @@
 
 </body>
 </html>
+
 
 
 
