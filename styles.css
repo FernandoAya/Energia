@@ -124,3 +124,7 @@ button{
 .modal-content h3 {
     font-size: 1.1rem;
 }
+.modal-texto {
+    word-wrap: break-word;
+    hyphens: auto; /* permite guiones automáticos elegantes */
+}
