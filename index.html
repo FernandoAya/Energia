@@ -5,44 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buen día!</title>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="modal.css">
     <link rel="shortcut icon" href="logo.png">
 
     <style>
-    /* Botones sí/no responsivos */
-    #yesBtn, #noBtn {
-        width: 80%;
-        max-width: 250px;
-        margin: 10px auto;
-        display: block;
-    }
-
-    /* Permitir que modal.css maneje el tamaño desde celular */
-    .modal-dialog {
-        max-width: 600px;
-        width: 90%;
-    }
-
-    /* Tamaño de texto del modal más chico y estable */
-    .modal-texto {
-        font-size: 0.95rem;
-        line-height: 1.45;
-        text-align: center;
-        overflow-wrap: break-word;
-        word-break: normal;
-        hyphens: auto;
-    }
-
-    /* Tamaño más pequeño aún en móviles chicos */
-    @media (max-width: 480px) {
-        .modal-texto {
-            font-size: 0.85rem;
-            line-height: 1.4;
-            padding: 5px 8px;
+        /* Botones sí/no responsivos */
+        #yesBtn, #noBtn {
+            width: 80%;
+            max-width: 250px;
+            margin: 10px auto;
+            display: block;
         }
-    }
-</style>
+
+        /* Tamaño del modal */
+        .modal-dialog {
+            max-width: 600px;
+            width: 90%;
+        }
+
+        /* Texto estable del modal */
+        .modal-texto {
+            font-size: 0.95rem;
+            line-height: 1.45;
+            text-align: center;
+            overflow-wrap: break-word;
+            word-break: normal;
+            hyphens: auto;
+        }
+
+        /* Ajuste extra para pantallas chicas */
+        @media (max-width: 480px) {
+            .modal-texto {
+                font-size: 0.85rem;
+                line-height: 1.4;
+                padding: 5px 8px;
+            }
+        }
+    </style>
 
 </head>
 
@@ -69,14 +70,12 @@
         <button id="yesBtn" class="bn-neon open-modal" data-open="modal1">SÍ</button>
 
         <!-- Modal 1 -->
-        <div class="modal" id="modal1" data-animation="slideInOutLeft">
+        <div class="modal" id="modal1">
             <div class="modal-dialog">
 
                 <header class="modal-header">
                     <h2>🙊</h2>
-                    <button class="close-modal" aria-label="close modal" data-close>
-                        ❌
-                    </button>
+                    <button class="close-modal" aria-label="close modal" data-close>❌</button>
                 </header>
 
                 <section class="modal-content">
@@ -93,14 +92,12 @@
         </div>
 
         <!-- Modal 2 -->
-        <div class="modal" id="modal2" data-animation="mixInAnimations">
+        <div class="modal" id="modal2">
             <div class="modal-dialog">
 
                 <header class="modal-header">
                     <h4>🙊</h4>
-                    <button class="close-modal" aria-label="close modal" data-close>
-                        ❌
-                    </button>
+                    <button class="close-modal" aria-label="close modal" data-close>❌</button>
                 </header>
 
                 <section class="modal-content">
@@ -136,7 +133,6 @@
 
 </body>
 </html>
-
 
 
 
