@@ -1,40 +1,64 @@
-/* === ESTILOS GENERALES DEL MODAL === */
+/* ================================
+   ESTILOS BASE DEL MODAL
+================================ */
 
 .modal {
-    position: fixed;
+    position: fixed; /* 🔥 evita movimiento del contenido */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 10px;
-    z-index: 999;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.25s ease-in-out;
+    z-index: 9999;
+    backdrop-filter: blur(2px);
 }
 
-.modal.show {
-    display: flex;
+.modal.is-visible {
+    opacity: 1;
+    visibility: visible;
 }
+
+/* ================================
+   CONTENEDOR DEL MODAL
+================================ */
 
 .modal-dialog {
-    width: 100%;
+    width: 90%;
     max-width: 450px;
-    background: #fff;
-    border-radius: 12px;
+    background: white;
+    border-radius: 15px;
     overflow: hidden;
-    text-align: center;
+    transform: translateY(-20px);
+    transition: 0.3s ease;
+    padding-bottom: 10px;
+
+    /* 🔥 Evita micro-saltos de texto en móviles */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
 }
 
-/* === CABECERA === */
+.modal.is-visible .modal-dialog {
+    transform: translateY(0);
+}
+
+/* ================================
+   HEADER DEL MODAL
+================================ */
+
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background: #f5f5f5;
-    border-bottom: 1px solid #ddd;
+    background: #ffdddd;
+    border-bottom: 2px solid #ff9a9a;
 }
 
 .modal-header h2,
@@ -46,77 +70,50 @@
 .close-modal {
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 25px;
     cursor: pointer;
 }
 
-/* === CONTENIDO === */
+/* ================================
+   CONTENIDO DEL MODAL
+================================ */
+
 .modal-content {
-    padding: 20px;
-}
-
-/* El texto del modal debe quedar fijo */
-.modal-texto {
-    max-width: 100%;
-    margin: 0 auto;
+    padding: 18px;
     text-align: center;
-    line-height: 1.4;
-    word-break: break-word;
 }
 
-/* Asegura que NO haya movimiento del texto */
-.modal-texto,
-.modal-content,
-.modal-dialog {
-    transform: none !important;
+.modal-texto {
+    font-size: 1.2rem;
+    line-height: 1.45;
+    text-align: center;
+
+    /* 🔥 Evita que las palabras salten de renglón por culpa de animaciones */
+    position: relative;
+    transform: translateZ(0);
+    will-change: auto;
 }
 
-/* === ANIMACIONES SOLO EN PC === */
-@media (min-width: 601px) {
-    .modal[data-animation="slideInOutLeft"].show .modal-dialog {
-        animation: slideInOutLeft 0.35s ease both;
-    }
-
-    @keyframes slideInOutLeft {
-        from {
-            opacity: 0;
-            transform: translateX(-40px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    /* Otra animación si la usas */
-    .modal[data-animation="mixInAnimations"].show .modal-dialog {
-        animation: mix 0.35s ease both;
-    }
-
-    @keyframes mix {
-        0% { opacity: 0; transform: scale(0.9); }
-        100% { opacity: 1; transform: scale(1); }
-    }
+.modal-content img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
 }
 
-/* === DESACTIVAR COMPLETAMENTE LA ANIMACIÓN EN CELULAR === */
+/* ================================
+   RESPONSIVE
+================================ */
+
 @media (max-width: 600px) {
-    .modal,
-    .modal-dialog,
-    .modal-content {
-        animation: none !important;
-        transform: none !important;
-        transition: none !important;
-    }
-
     .modal-dialog {
-        width: 90% !important;
-        max-width: 90% !important;
+        width: 92%;
+        max-width: 92%;
     }
 
-    /* Texto totalmente fijo */
     .modal-texto {
-        font-size: 1rem;
-        text-align: center;
+        font-size: 1.15rem;
+        line-height: 1.42;
+        padding: 8px;
     }
 }
+
