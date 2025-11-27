@@ -1,214 +1,122 @@
-/* modal.css - versión optimizada, texto más pequeño y estable */
-
-:root{
-  --black: rgba(0,0,0,0.6);
-  --white: #ffffff;
-  --bounceEasing: cubic-bezier(.2,1,.3,1);
-}
-
-/* reset/links/botones */
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: inherit;
-}
-
-/* Body */
-body {
-  font: 16px/1.5 sans-serif;
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Botones que abren modal */
-.open-modal {
-  font-weight: bold;
-  padding: 0.75rem 1.75rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-}
-
-/* ===== MODAL ===== */
+/* === ESTILOS GENERALES DEL MODAL === */
 
 .modal {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  background: var(--black);
-  cursor: default;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.35s ease-in;
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    z-index: 999;
 }
 
-.modal.is-visible {
-  visibility: visible;
-  opacity: 1;
+.modal.show {
+    display: flex;
 }
 
 .modal-dialog {
-  position: relative;
-  max-width: 800px;
-  width: 90%;
-  max-height: 80vh;
-  border-radius: 8px;
-  background: var(--white);
-  overflow: auto;
-  cursor: default;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  transform-origin: center center;
+    width: 100%;
+    max-width: 450px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
 }
 
-.modal-dialog > * {
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-/* Header */
+/* === CABECERA === */
 .modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #77028f;
-  color: white;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
 }
 
-.modal-header h2, 
+.modal-header h2,
 .modal-header h4 {
-  margin: 0;
-  font-size: 1.6rem;
-  line-height: 1;
+    margin: 0;
 }
 
-.modal-header .close-modal {
-  font-size: 1.4rem;
-  padding: 8px;
-  border-radius: 6px;
-  background: transparent;
-  color: white;
+/* Botón cerrar */
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-.modal-header .close-modal:hover {
-  background: rgba(255,255,255,0.08);
-}
-
-/* ===== CONTENIDO ===== */
-
+/* === CONTENIDO === */
 .modal-content {
-  color: #222;
-  background: transparent;
+    padding: 20px;
 }
 
-.modal-content h3 {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.4;
-  word-wrap: break-word;
-}
-
-.modal-content img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Texto del modal */
+/* El texto del modal debe quedar fijo */
 .modal-texto {
-  font-size: 1rem;          /* tamaño base más pequeño */
-  line-height: 1.45;
-  word-break: normal;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  text-align: center;
-  padding: 10px;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.4;
+    word-break: break-word;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { display: none; }
-
-/* ===== ANIMACIONES ===== */
-
-[data-animation] .modal-dialog {
-  opacity: 0;
-  transition: all 0.5s var(--bounceEasing);
+/* Asegura que NO haya movimiento del texto */
+.modal-texto,
+.modal-content,
+.modal-dialog {
+    transform: none !important;
 }
 
-[data-animation].is-visible .modal-dialog {
-  opacity: 1;
-  transition-delay: 0.2s;
+/* === ANIMACIONES SOLO EN PC === */
+@media (min-width: 601px) {
+    .modal[data-animation="slideInOutLeft"].show .modal-dialog {
+        animation: slideInOutLeft 0.35s ease both;
+    }
+
+    @keyframes slideInOutLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Otra animación si la usas */
+    .modal[data-animation="mixInAnimations"].show .modal-dialog {
+        animation: mix 0.35s ease both;
+    }
+
+    @keyframes mix {
+        0% { opacity: 0; transform: scale(0.9); }
+        100% { opacity: 1; transform: scale(1); }
+    }
 }
 
-[data-animation="slideInOutDown"] .modal-dialog { transform: translateY(100%); }
-[data-animation="slideInOutTop"]  .modal-dialog { transform: translateY(-100%); }
-[data-animation="slideInOutLeft"] .modal-dialog { transform: translateX(-100%); }
-[data-animation="slideInOutRight"].modal-dialog { transform: translateX(100%); }
-[data-animation="zoomInOut"]       .modal-dialog { transform: scale(0.2); }
-
-[data-animation="rotateInOutDown"] .modal-dialog {
-  transform-origin: top left;
-  transform: rotate(-1turn);
-}
-
-[data-animation="slideInOutDown"].is-visible .modal-dialog,
-[data-animation="slideInOutTop"].is-visible .modal-dialog,
-[data-animation="slideInOutLeft"].is-visible .modal-dialog,
-[data-animation="slideInOutRight"].is-visible .modal-dialog,
-[data-animation="zoomInOut"].is-visible .modal-dialog,
-[data-animation="rotateInOutDown"].is-visible .modal-dialog {
-  transform: none;
-}
-
-@keyframes mixInAnimations {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(0); }
-}
-
-/* ===== MEDIA QUERIES ===== */
-
-/* Móviles pequeños */
-@media (max-width: 480px) {
-
-  .modal-dialog {
-    width: 96%;
-    max-width: 420px;
-    max-height: 88vh;
-    border-radius: 10px;
-  }
-
-  .modal-header h2, 
-  .modal-header h4 {
-    font-size: 1.3rem;
-  }
-
-  .modal-header .close-modal {
-    font-size: 1.4rem;
-    padding: 10px;
-  }
-
-  .modal-texto {
-    font-size: 0.9rem;   /* 🔥 más chico aún para evitar saltos de línea */
-    line-height: 1.45;
-    padding: 8px;
-  }
-}
-
-/* Tablet */
+/* === DESACTIVAR COMPLETAMENTE LA ANIMACIÓN EN CELULAR === */
 @media (max-width: 600px) {
-  .modal-texto {
-    font-size: 1rem;
-  }
-}
+    .modal,
+    .modal-dialog,
+    .modal-content {
+        animation: none !important;
+        transform: none !important;
+        transition: none !important;
+    }
 
+    .modal-dialog {
+        width: 90% !important;
+        max-width: 90% !important;
+    }
+
+    /* Texto totalmente fijo */
+    .modal-texto {
+        font-size: 1rem;
+        text-align: center;
+    }
+}
