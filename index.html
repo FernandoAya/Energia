@@ -8,68 +8,100 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="modal.css">
     <link rel="shortcut icon" href="logo.png">
+
+    <style>
+        /* Ajuste para que los botones sí/no entren en pantalla móvil */
+        #yesBtn, #noBtn {
+            width: 80%;
+            max-width: 250px;
+            margin: 10px auto;
+            display: block;
+        }
+
+        /* Evitar que el modal se salga en celular */
+        .modal-dialog {
+            max-width: 90%;
+            width: 90%;
+        }
+
+        .modal-content h3 {
+            font-size: 1rem;
+        }
+    </style>
 </head>
+
 <body>
     <div class="contenedor">
-        
-        <class class="container">
+
+        <div class="container">
             <h1 class="letra-neon">Buen día preciosa</h1>
             <p class="neon3">
                 <span class="flicker1">♣</span>
                 <span class="flicker2">♣</span>
                 <span class="flicker3">♣</span>
             </p>
-        </class>
+        </div>
+
         <div>
-            <img src="imagen.png" width="30%" >
+            <img src="imagen.png" width="30%">
             <br>
         </div>
-        <div class="energia">¿Querés saber una cosa?♥</div> 
-            <button id="yesBtn" class="bn-neon open-modal" data-open="modal1">SÍ</button>
-              <div class="modal" id="modal1" data-animation="slideInOutLeft">
-                <div class="modal-dialog">
-                  <header class="modal-header">
+
+        <div class="energia">¿Querés saber una cosa?♥</div>
+
+        <!-- Botón SÍ -->
+        <button id="yesBtn" class="bn-neon open-modal" data-open="modal1">SÍ</button>
+
+        <!-- Modal 1 -->
+        <div class="modal" id="modal1" data-animation="slideInOutLeft">
+            <div class="modal-dialog">
+
+                <header class="modal-header">
                     <h2>🙊</h2>
                     <button class="close-modal" aria-label="close modal" data-close>
-                      ❌ 
+                        ❌
                     </button>
-                  </header>
-                  <section class="modal-content">
-                    <h3>Quizá no pueda ver tu reacción, pero si sonreís con este mensajito,
-						mi cora latirá con alegría. Que este día esté lleno de alegría 
-						para vos, mi amor. 
-						Te quiero ❤️</h3><hr><hr>
-                  </section>
-                  <footer class="modal-footer">
-                    <button type="button" class="open-modal bn-neon" id="yesBtn"
-    			style="display: flex; justify-content: center; align-items: center; height: 100px; padding: 0 80px;margin-left:center;">
-    			
-		    </button>
-                  </footer>
-                </div>
-              </div>
-             
-              <div class="modal" id="modal2" data-animation="mixInAnimations">
-                <div class="modal-dialog">
-                  <header class="modal-header">
-                    <h4>🙊
-                    </h4>
-                    <button class="close-modal" aria-label="close modal" data-close>
-                        ❌  
-                    </button>
-                  </header>
-                  <section class="modal-content">
-                      <img src="meme.jpg" alt="">
-                  </section>
-  
-                </div>
-              </div>
-            <button id="noBtn">NO</button>
+                </header>
 
-    
-    <br><br><br><br>
+                <section class="modal-content">
+                    <h3>
+                        Quizá no pueda ver tu reacción, pero si sonreís con este mensajito,
+                        mi cora latirá con alegría. Que este día esté lleno de alegría
+                        para vos, mi amor.
+                        Te quiero ❤️
+                    </h3>
+                    <hr><hr>
+                </section>
 
+            </div>
         </div>
+
+        <!-- Modal 2 -->
+        <div class="modal" id="modal2" data-animation="mixInAnimations">
+            <div class="modal-dialog">
+
+                <header class="modal-header">
+                    <h4>🙊</h4>
+                    <button class="close-modal" aria-label="close modal" data-close>
+                        ❌
+                    </button>
+                </header>
+
+                <section class="modal-content">
+                    <img src="meme.jpg" alt="">
+                </section>
+
+            </div>
+        </div>
+
+        <!-- Botón NO -->
+        <button id="noBtn">NO</button>
+
+        <br><br><br><br>
+
+    </div>
+
+    <!-- Burbujas decorativas -->
     <div class="burbujas">
         <div class="burbuja"></div>
         <div class="burbuja"></div>
@@ -82,8 +114,11 @@
         <div class="burbuja"></div>
         <div class="burbuja"></div>
     </div>
-    <script src="js.js"></script>
-    <script src="modal.js"></script> 
-</body>
 
+    <script src="js.js"></script>
+    <script src="modal.js"></script>
+
+</body>
 </html>
+
+
