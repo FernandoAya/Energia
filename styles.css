@@ -1,31 +1,32 @@
-*{
+* {
     margin: 0;
 }
 
-body{
+body {
     background-image: linear-gradient(135deg,#00e7d4, #505488, #ef3f80, #161569, #ef3f80, #505488, #00E7D4 );
     background-size: 500%;
     animation: fanimado 60s infinite;
 }
-.contenedor{
+
+.contenedor {
     width: 100vw;
     height: 100vh;
     text-align: center;
     padding: 2%;
 }
 
-p{
+p {
     font-size: xx-large;
     padding: 5%;
 }
 
-button{
+button {
     font-size: xx-large;
     padding: 0.75em;
 }
 
 /* 🔥 BOTONES ADAPTADOS AL CELULAR */
-#yesBtn, #noBtn{
+#yesBtn, #noBtn {
     width: 80%;
     max-width: 280px;
     display: block;
@@ -37,7 +38,7 @@ button{
 }
 
 /* Eliminar posición absoluta del NO */
-#noBtn{
+#noBtn {
     position: static !important;
 }
 
@@ -46,10 +47,10 @@ button{
     100% { transform: scale(1); }
 }
 
-@keyframes fanimado{
-    0%{ background-image: 0% 50%; }
-    50%{ background-position: 100% 50%; }
-    100%{ background-position: 0% 50%; }
+@keyframes fanimado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .container {
@@ -79,17 +80,18 @@ button{
 .flicker2 { animation: parpadear 2.5s infinite backwards steps(4); }
 .flicker3 { animation: parpadear 1.5s infinite backwards steps(2); }
 
-@keyframes parpadear { to { color: gray; text-shadow: none; } }
+@keyframes parpadear { 
+    to { color: gray; text-shadow: none; } 
+}
 
 /* burbujas */
-
-.burbuja{
+.burbuja {
   border-radius: 50%;
   background: #fff;
   opacity: .3;
   position: absolute;
   bottom: -150px;
-  animation: burbujas 3s linear infinite ;
+  animation: burbujas 3s linear infinite;
 }
 
 .burbuja:nth-child(1){ width: 80px; height: 80px; left: 5%; animation-duration: 3s; animation-delay: 3s; }
@@ -103,17 +105,17 @@ button{
 .burbuja:nth-child(9){ width: 65px; height: 65px; left: 51%; animation-duration: 3s; animation-delay: 2s; }
 .burbuja:nth-child(10){ width: 40px; height: 40px; left: 35%; animation-duration: 3s; animation-delay: 4s; }
 
-@keyframes burbujas{
-  0%{ bottom: 0; opacity: 0; }
-  30%{ transform: translateX(30px); }
-  50%{ opacity: .4; }
-  100%{ bottom: 100vh; opacity: 0; }
+@keyframes burbujas {
+  0% { bottom: 0; opacity: 0; }
+  30% { transform: translateX(30px); }
+  50% { opacity: .4; }
+  100% { bottom: 100vh; opacity: 0; }
 }
 
-@keyframes movimiento{
-  0%{ transform: translateY(0); }
-  50%{ transform: translateY(30px); }
-  100%{ transform: translateY(0); }
+@keyframes movimiento {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(30px); }
+  100% { transform: translateY(0); }
 }
 
 /* 🔥 MODAL RESPONSIVE */
@@ -121,11 +123,28 @@ button{
     max-width: 90% !important;
     width: 90% !important;
 }
+
 .modal-content h3 {
     font-size: 1.1rem;
 }
+
 .modal-texto {
     max-width: 90%;
     margin: auto;
     text-align: center;
 }
+
+/* ⭐ FIX: Evitar movimiento del texto del modal en celular */
+.modal {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+}
+
+.modal-dialog {
+    position: relative;
+    transform: translateZ(0); 
+    will-change: auto;
+    backface-visibility: hidden;
+}
+
