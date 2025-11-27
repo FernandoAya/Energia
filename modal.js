@@ -2,28 +2,42 @@ const openEls = document.querySelectorAll("[data-open]");
 const closeEls = document.querySelectorAll("[data-close]");
 const isVisible = "is-visible";
 
-for (const el of openEls) {
-  el.addEventListener("click", function() {
-    const modalId = this.dataset.open;
-    document.getElementById(modalId).classList.add(isVisible);
-  });
-}
+// Abrir modal
+openEls.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const modalId = btn.dataset.open;
+    const modal = document.getElementById(modalId);
 
-for (const el of closeEls) {
-  el.addEventListener("click", function() {
-    this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+    if (modal) {
+      modal.classList.add(isVisible);
+    }
   });
-}
+});
 
+// Cerrar modal (botón X)
+closeEls.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const modal = btn.closest(".modal");
+    if (modal) {
+      modal.classList.remove(isVisible);
+    }
+  });
+});
+
+// Cerrar clicando afuera del cuadro
 document.addEventListener("click", e => {
-  if (e.target == document.querySelector(".modal.is-visible")) {
-    document.querySelector(".modal.is-visible").classList.remove(isVisible);
+  const visibleModal = document.querySelector(".modal.is-visible");
+  if (visibleModal && e.target === visibleModal) {
+    visibleModal.classList.remove(isVisible);
   }
 });
 
+// Cerrar con ESC
 document.addEventListener("keyup", e => {
-  // if we press the ESC
-  if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
-    document.querySelector(".modal.is-visible").classList.remove(isVisible);
+  if (e.key === "Escape") {
+    const visibleModal = document.querySelector(".modal.is-visible");
+    if (visibleModal) {
+      visibleModal.classList.remove(isVisible);
+    }
   }
 });
